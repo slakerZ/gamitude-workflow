@@ -1,7 +1,19 @@
 {
   "name": "gamitude-workflow",
   "version": "1.0.0",
+  "main": "src/App.js",
+  "scripts": {
+    "start": "node src/App.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slakerZ/gamitude-workflow"
+  },
+  "author": "Jakub Kulaszewicz",
+  "license": "MIT",
+  "homepage": "https://gamitude-workflow.herokuapp.com/",
   "dependencies": {
-    
+  },
+  "devDependencies": {
   }
 }
