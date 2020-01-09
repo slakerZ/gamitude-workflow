@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://recznik:recznik1@ds259738.mlab.com:59738/heroku_pdt1jjb9', {
+mongoose.connect(process.env.DATABASE_URL || require('../../config'), {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
