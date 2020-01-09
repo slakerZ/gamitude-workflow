@@ -1,29 +1,21 @@
 const express = require('express');
+const Energy = require('../../models/energy');
 const router = express.Router();
 
 /* PATCH user energy */
-router.patch('/', (req, res) => {
-    res.json(req.body);
-});
-
-/* PATCH user body energy */
-router.patch('/body', (req, res) => {
-    res.json(req.body);
-});
-
-/* PATCH user emotional energy */
-router.patch('/emotional', (req, res) => {
-    res.json(req.body);
-});
-
-/* PATCH user mind energy */
-router.patch('/mind', (req, res) => {
-    res.json(req.body);
-});
-
-/* PATCH user soul energy */
-router.patch('/soul', (req, res) => {
-    res.json(req.body);
+router.patch('/:id', async (req, res) => {
+    const updates = Object.keys(req.body);
+    const allowedUpdates = ["mind", "body", "emotional", "soul"];
+    const isValidOperation = updates.every(value => allowedUpdates.includes(value));
+    if (!isValidOperation) {
+        res.status(400).send({error: "Invalid updates!"})
+    }
+    try {
+        const energy = await Energy.findOneAndUpdate({userId: req.params.id}, req.body, { new: true, runValidators: true});
+        energy ? res.send(energy) : res.status(404).send({error: "User not found!"});
+    } catch (err) {
+        res.status(400).send(err);
+    }
 });
 
 module.exports = router;
