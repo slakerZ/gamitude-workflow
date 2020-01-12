@@ -14,7 +14,7 @@ router.patch('/:id', async (req, res) => {
         const energy = await Energy.findOneAndUpdate({userId: req.params.id}, req.body, { new: true, runValidators: true});
         energy ? res.send(energy) : res.status(404).send({error: "User not found!"});
     } catch (err) {
-        res.status(400).send(err);
+        res.status(400).send();
     }
 });
 
