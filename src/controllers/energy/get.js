@@ -1,29 +1,16 @@
 const express = require('express');
+const Energy = require('../../models/energy');
 const router = express.Router();
 
 /* GET user energy */
-router.get('/', (req, res) => {
-    res.json({ body: 100, emotional: 50, mind: 76, soul: 0 });
-});
-
-/* GET user body energy */
-router.get('/body', (req, res) => {
-    res.json({ body: 100 });
-});
-
-/* GET user emotional energy */
-router.get('/emotional', (req, res) => {
-    res.json({ emotional: 100 });
-});
-
-/* GET user mind energy */
-router.get('/mind', (req, res) => {
-    res.json({ mind: 100 });
-});
-
-/* GET user soul energy */
-router.get('/soul', (req, res) => {
-    res.json({ soul: 100 });
+router.get('/:id', async (req, res) => {
+    const userId = req.params.id;
+    try {
+        const energy = await Energy.findOne({userId});
+        energy ? res.send(energy) : res.status(404).send({error: "User not found!"});
+    } catch (err) {
+        res.status(500).send();
+    }
 });
 
 module.exports = router;
