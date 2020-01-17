@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const energy = require('./src/controllers/energy');
+const user = require('./src/controllers/user');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/workflow/energy', energy);
+app.use('/workflow/user', user);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
