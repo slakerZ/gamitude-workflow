@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
                 res.status(201).send(user);
             })
             .catch(function(error) {
-                res.status(400).send(error);
+                res.status(400).send(ranksUrl + error);
             });
     } catch (e) {
         res.status(400).send("catch2"+e);
