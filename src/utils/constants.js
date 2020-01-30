@@ -1,0 +1,20 @@
+const STATS = ["STRENGTH","INTELLIGENCE","CREATIVITY","FLUENCY"];
+const METHOD = ["POMODORO", "90/30"];
+const ENERGIES = ["BODY", "MIND", "EMOTIONAL", "SOUL"];
+const MAX_ENERGY = 100;
+const MIN_ENERGY = 0;
+const DOMINANT_CON = 0.20833;
+const SELECTED_CON = 0.1;
+const REST_CON = 0.05;
+
+
+module.exports = {
+    STATS,
+    METHOD,
+    ENERGIES,
+    MAX_ENERGY,
+    MIN_ENERGY,
+    DOMINANT_CON,
+    SELECTED_CON,
+    REST_CON
+};
