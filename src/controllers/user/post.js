@@ -9,7 +9,8 @@ const ranksUrl = process.env.RANKS_URL || 'http://localhost:3020';
 router.post('/', async (req, res) => {
     const user = new User(req.body);
     try {
-        await user.save();
+        await user.save(); 
+        console.log(ranksUrl,user.firebaseId);
         axios
             .post(ranksUrl + '/userRank/' + user.firebaseId, {
                 userId: user.firebaseId,
