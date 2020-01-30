@@ -3,7 +3,7 @@ const User = require('../../models/user');
 const router = express.Router();
 const axios = require('axios');
 
-const ranksUrl = process.env.RANKS_URL  || 'https://gamitude-ranks.herokuapp.com';
+const ranksUrl = 'https://gamitude-ranks.herokuapp.com';
 
 /* POST new user */
 router.post('/', async (req, res) => {
