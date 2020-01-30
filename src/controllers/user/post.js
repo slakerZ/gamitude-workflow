@@ -3,25 +3,26 @@ const User = require('../../models/user');
 const router = express.Router();
 const axios = require('axios');
 
-const ranksUrl = (process.env.RANKS_URL || 'http://localhost:3020');
+const ranksUrl = process.env.RANKS_URL || 'http://localhost:3020';
 
 /* POST new user */
 router.post('/', async (req, res) => {
     const user = new User(req.body);
     try {
         await user.save();
-        axios.post(ranksUrl+'/userRank/'+firebaseId, {
-            userId: user.firebaseId
-          })
-          .then(function (response) {
-            res.status(201).send(user)
-          })
-          .catch(function (error) {
-            res.status(400).send()
-          });
-        res.status(201).send(user)
+        axios
+            .post(ranksUrl + '/userRank/' + user.firebaseId, {
+                userId: user.firebaseId,
+            })
+            .then(function(response) {
+                res.status(201).send(user);
+            })
+            .catch(function(error) {
+                res.status(400).send();
+            });
+        res.status(201).send(user);
     } catch (e) {
-        res.status(400).send()
+        res.status(400).send();
     }
 });
 
